@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Deep midnight indigo background -->
+    <path
+        android:pathData="M0,0h108v108h-108z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="54"
+                android:startY="0"
+                android:endX="54"
+                android:endY="108"
+                android:type="linear">
+                <item android:offset="0.0" android:color="#1A1E42" />
+                <item android:offset="0.45" android:color="#121533" />
+                <item android:offset="1.0" android:color="#0A0C1A" />
+            </gradient>
+        </aapt:attr>
+    </path>
+    <!-- Soft luminous ambient halo behind the shield -->
+    <path
+        android:pathData="M54,54m-44,0a44,44 0 1,0 88,0a44,44 0 1,0 -88,0">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="54"
+                android:startY="54"
+                android:gradientRadius="44"
+                android:type="radial">
+                <item android:offset="0.0" android:color="#355660B0" />
+                <item android:offset="0.6" android:color="#182E3875" />
+                <item android:offset="1.0" android:color="#00000000" />
+            </gradient>
+        </aapt:attr>
+    </path>
+</vector>

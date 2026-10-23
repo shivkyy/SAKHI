@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SAKHI — Live Emergency Tracking Backend</title>
+  <link rel="stylesheet" href="/css/track.css">
+  <style>
+    .landing-wrapper {
+      max-width: 680px;
+      margin: 40px auto;
+      padding: 32px 24px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    .landing-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 20px;
+    }
+    .landing-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-white);
+    }
+    .landing-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      background: rgba(16, 185, 129, 0.2);
+      border: 1px solid var(--color-safe);
+      color: var(--color-safe);
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-top: 4px;
+    }
+    .section-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text-white);
+      margin: 20px 0 10px 0;
+    }
+    .info-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+    .info-list li {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+    .info-list li span.bullet {
+      color: var(--color-accent-light);
+      font-weight: bold;
+    }
+    .endpoint-card {
+      background: var(--bg-card);
+      border-radius: 8px;
+      padding: 12px 14px;
+      margin-top: 14px;
+      font-family: monospace;
+      font-size: 0.82rem;
+      color: #CBD5E1;
+      border: 1px solid var(--border-subtle);
+    }
+  </style>
+</head>
+<body>
+  <div class="app-container">
+    <header class="app-header">
+      <div class="header-brand">
+        <div class="brand-shield">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">SAKHI</span>
+          <span class="brand-tagline">Safety, in your keychain</span>
+        </div>
+      </div>
+      <div class="header-connection">
+        <span class="conn-dot live"></span>
+        <span class="conn-text">Server Active</span>
+      </div>
+    </header>
+
+    <main style="padding: 20px; overflow-y: auto;">
+      <div class="landing-wrapper">
+        <div class="landing-header">
+          <div class="brand-shield" style="width: 48px; height: 48px;">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <div>
+            <h1 class="landing-title">Live Tracking Gateway</h1>
+            <div class="landing-badge">System Status: Operational</div>
+          </div>
+        </div>
+
+        <p style="color: var(--text-secondary); line-height: 1.6; font-size: 0.95rem;">
+          This secure microservice coordinates real-time emergency telemetry for the SAKHI physical wearable and Android application.
+        </p>
+
+        <h2 class="section-title">Emergency Tracking Protocols</h2>
+        <ul class="info-list">
+          <li>
+            <span class="bullet">✓</span>
+            <div><strong>Access-Controlled Tracking:</strong> Live tracking links require a cryptographically generated reader token embedded in the emergency SMS dispatch.</div>
+          </li>
+          <li>
+            <span class="bullet">✓</span>
+            <div><strong>Writer Authentication:</strong> Only the authenticated Android client possessing the private writer key can publish location updates.</div>
+          </li>
+          <li>
+            <span class="bullet">✓</span>
+            <div><strong>Real-Time SSE Streaming:</strong> Trusted contacts view real-time location breadcrumbs and updates via Server-Sent Events without polling lag.</div>
+          </li>
+          <li>
+            <span class="bullet">✓</span>
+            <div><strong>Privacy & Retention:</strong> Emergency sessions expire automatically after 2 hours and all session telemetry is purged within 24 hours.</div>
+          </li>
+        </ul>
+
+        <h2 class="section-title">Backend API Verification</h2>
+        <div class="endpoint-card">
+          GET /health &rarr; System status & active session count<br>
+          POST /api/sessions &rarr; Create emergency tracking session<br>
+          POST /api/sessions/:id/location &rarr; Upload live GPS update<br>
+          GET /api/sessions/:id/stream &rarr; Real-time SSE stream for viewers
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

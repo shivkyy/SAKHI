@@ -1,0 +1,114 @@
+<resources>
+    <string name="app_name">सखी (SAKHI)</string>
+    <string name="app_tagline">सुरक्षा, आपके की-चेन में।</string>
+
+    <!-- Navigation -->
+    <string name="nav_home">होम</string>
+    <string name="nav_contacts">संपर्क</string>
+    <string name="nav_device">की-चेन</string>
+    <string name="nav_settings">सेटिंग्स</string>
+    <string name="nav_history">इतिहास</string>
+
+    <!-- Splash & Onboarding -->
+    <string name="onboarding_welcome_title">सखी (SAKHI) में आपका स्वागत है</string>
+    <string name="onboarding_welcome_desc">आपकी व्यक्तिगत सुरक्षा के लिए एक स्मार्ट, पोर्टेबल साथी।</string>
+    <string name="onboarding_p1_title">गुप्त वेयरेबल ट्रिगर</string>
+    <string name="onboarding_p1_desc">फोन छुए बिना आपातकालीन मोड शुरू करने के लिए की-चेन बटन को दो बार दबाएं।</string>
+    <string name="onboarding_p2_title">विश्वसनीय संपर्क अलर्ट</string>
+    <string name="onboarding_p2_desc">5 सेकंड का काउंटडाउन आपको अलर्ट रद्द करने का समय देता है, इसके बाद आपकी लाइव लोकेशन भेज दी जाती है।</string>
+    <string name="onboarding_p3_title">स्मार्ट एआई और पुलिस आपातकाल</string>
+    <string name="onboarding_p3_desc">आवाज़ की जांच और तीन बार दबाकर तुरंत 112 पुलिस सहायता प्राप्त करें।</string>
+    <string name="btn_get_started">शुरू करें</string>
+    <string name="btn_next">आगे बढ़ें</string>
+    <string name="btn_skip">छोड़ें</string>
+    <string name="btn_finish">सेटअप पूरा करें</string>
+    <string name="btn_grant_permissions">अनुमति दें</string>
+
+    <!-- Home Screen -->
+    <string name="home_title">सखी (SAKHI)</string>
+    <string name="home_hero_ready">सखी तैयार है</string>
+    <string name="home_hero_disconnected">की-चेन डिस्कनेक्ट है</string>
+    <string name="home_hero_setup_incomplete">सेटअप अधूरा है</string>
+    <string name="home_hero_active">आपातकालीन सत्र सक्रिय है</string>
+    <string name="home_hero_ready_subtitle">की-चेन कनेक्टेड है। सुरक्षा सक्रिय है।</string>
+    <string name="home_hero_disconnected_subtitle">सुरक्षित रहने के लिए की-चेन को पास रखें।</string>
+    <string name="home_device_title">सखी की-चेन</string>
+    <string name="home_battery">बैटरी: %1$d%%</string>
+    <string name="home_signal">सिग्नल: %1$d dBm</string>
+    <string name="home_last_seen">अंतिम बार देखा गया: %1$s</string>
+    <string name="home_reconnect">पुनः कनेक्ट करें</string>
+    <string name="home_readiness_checklist">तैयारी चेकलिस्ट</string>
+    <string name="home_gesture_guide">की-चेन बटन के निर्देश</string>
+    <string name="home_gesture_double_press">दो बार दबाएं: आपातकालीन अलर्ट शुरू</string>
+    <string name="home_gesture_tap_hold">दबाकर रखें (1.5 सेकंड): अलर्ट रद्द करें</string>
+    <string name="home_gesture_triple_tap">तीन बार दबाएं (सक्रिय होने पर): तुरंत पुलिस कॉल</string>
+    <string name="home_sos_backup_title">मैनुअल एसओएस बैकअप</string>
+    <string name="home_sos_backup_hint">आपातकालीन सत्र शुरू करने के लिए 2 सेकंड दबाकर रखें</string>
+    <string name="home_test_alert">टेस्ट अलर्ट भेजें</string>
+    <string name="home_test_keychain">की-चेन टेस्ट करें</string>
+
+    <!-- Emergency Screen -->
+    <string name="emergency_title">आपातकाल सक्रिय</string>
+    <string name="emergency_countdown_hint">संपर्कों को अलर्ट भेजा जा रहा है</string>
+    <string name="emergency_cancel_button">अलर्ट रद्द करें</string>
+    <string name="emergency_cancel_hint">या की-चेन बटन को दबाकर रखें</string>
+    <string name="emergency_session_timer">सक्रिय सत्र समय:</string>
+    <string name="emergency_police_requested">पुलिस सहायता अनुरोधित</string>
+    <string name="emergency_police_call_btn">पुलिस को कॉल करें (112)</string>
+    <string name="emergency_end_session">आपातकालीन सत्र समाप्त करें</string>
+    <string name="emergency_stealth_mode">गुप्त स्क्रीन मोड</string>
+    <string name="emergency_timeline">लाइव घटना समयरेखा</string>
+    <string name="emergency_contact_dispatch">संपर्क संदेश स्थिति</string>
+    <string name="emergency_ai_title">आवाज़ संकट विश्लेषण</string>
+
+    <!-- Contacts -->
+    <string name="contacts_title">विश्वसनीय संपर्क</string>
+    <string name="contacts_subtitle">अधिकतम 5 संपर्कों को आपका संदेश और लाइव लोकेशन मिलेगी।</string>
+    <string name="contacts_add">नया संपर्क जोड़ें</string>
+    <string name="contacts_name">पूरा नाम</string>
+    <string name="contacts_phone">फोन नंबर</string>
+    <string name="contacts_relation">संबंध (जैसे माँ, बहन, दोस्त)</string>
+    <string name="contacts_priority">प्राथमिकता</string>
+    <string name="contacts_sms_toggle">एसएमएस अलर्ट भेजें</string>
+    <string name="contacts_empty">कोई संपर्क नहीं जोड़ा गया। आपातकालीन अलर्ट के लिए कम से कम एक संपर्क जोड़ें।</string>
+
+    <!-- Device -->
+    <string name="device_title">सखी की-चेन</string>
+    <string name="device_status">हार्डवेयर स्थिति</string>
+    <string name="device_vibrate_test">वाइब्रेशन टेस्ट</string>
+    <string name="device_forget">डिवाइस हटाएं</string>
+    <string name="device_pair_new">नया की-चेन जोड़ें</string>
+    <string name="device_auto_reconnect">पृष्ठभूमि में स्वतः कनेक्ट करें</string>
+    <string name="device_diagnostics">प्रोटोकॉल डायग्नोस्टिक्स</string>
+
+    <!-- Settings -->
+    <string name="settings_title">सेटिंग्स</string>
+    <string name="settings_countdown_title">काउंटडाउन समय</string>
+    <string name="settings_countdown_desc">दो बार दबाने के बाद अलर्ट भेजने से पहले का समय।</string>
+    <string name="settings_template_title">आपातकालीन संदेश प्रारूप</string>
+    <string name="settings_location_accuracy_title">जीपीएस सटीकता शामिल करें</string>
+    <string name="settings_ai_escalation_title">एआई पुलिस सहायता</string>
+    <string name="settings_ai_escalation_desc">संकट की पहचान होने पर स्वतः पुलिस से संपर्क करें।</string>
+    <string name="settings_sensitivity_title">संकट पहचान संवेदनशीलता</string>
+    <string name="settings_police_number_title">आपातकालीन पुलिस नंबर</string>
+    <string name="settings_privacy_title">गोपनीयता और ऑडियो</string>
+    <string name="settings_privacy_no_store">ऑडियो सुरक्षित रखें (कभी सेव नहीं किया जाता)</string>
+    <string name="settings_transcript_toggle">सत्र के दौरान बातचीत दिखाएं</string>
+    <string name="settings_language">भाषा</string>
+    <string name="settings_appearance">थीम</string>
+    <string name="settings_permissions_health">अनुमति स्थिति</string>
+    <string name="settings_about">सखी के बारे में</string>
+    <string name="settings_disclaimer">सखी एक सहायक प्रोटोटाइप है और यह सरकारी आपातकालीन सेवाओं का विकल्प नहीं है।</string>
+
+    <!-- History -->
+    <string name="history_title">घटना इतिहास</string>
+    <string name="history_empty">कोई पिछला आपातकालीन रिकॉर्ड नहीं है।</string>
+    <string name="history_export">लॉग निर्यात करें</string>
+    <string name="history_send_safe">\"मैं सुरक्षित हूँ\" संदेश भेजें</string>
+
+    <!-- Common -->
+    <string name="save">सुरक्षित करें</string>
+    <string name="cancel">रद्द करें</string>
+    <string name="delete">हटाएं</string>
+    <string name="confirm">पुष्टि करें</string>
+</resources>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- SAKHI Shield Silhouette (Monochrome vector for Android 13+ Themed Icons) -->
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M54,26 L78,35 C78,56 68,73 54,82 C40,73 30,56 30,35 Z M54,32 L35,39 C35,54 43,68 54,75 C65,68 73,54 73,39 Z" />
+    <!-- SAKHI Heart Embrace Inside Shield -->
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M54,43 C50,38 41,39 40,46 C39,52 45,58 54,66 C63,58 69,52 68,46 C67,39 58,38 54,43 Z" />
+    <!-- SAKHI Star / Beacon of Safety at Center -->
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M54,49 L55.5,53 L59.5,54.5 L55.5,56 L54,60 L52.5,56 L48.5,54.5 L52.5,53 Z" />
+</vector>

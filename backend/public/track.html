@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>SAKHI — Live Emergency Location Tracking</title>
+  
+  <!-- Leaflet CSS for OpenStreetMap -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  
+  <!-- SAKHI Custom Theme CSS -->
+  <link rel="stylesheet" href="/css/track.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Top Brand Header -->
+    <header class="app-header">
+      <div class="header-brand">
+        <div class="brand-shield">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">SAKHI</span>
+          <span class="brand-tagline">Safety, in your keychain</span>
+        </div>
+      </div>
+      <div class="header-connection" id="connectionBadge">
+        <span class="conn-dot live"></span>
+        <span class="conn-text" id="connStatusText">Connecting...</span>
+      </div>
+    </header>
+
+    <!-- Main Content Grid -->
+    <main class="main-layout">
+      <!-- Interactive Leaflet Map Container -->
+      <div class="map-wrapper">
+        <div id="map"></div>
+        
+        <!-- Map Floating Overlays -->
+        <button id="btnRecenter" class="map-floating-btn" title="Center on Victim">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" y1="2" x2="12" y2="6"/>
+            <line x1="12" y1="18" x2="12" y2="22"/>
+            <line x1="2" y1="12" x2="6" y2="12"/>
+            <line x1="18" y1="12" x2="22" y2="12"/>
+          </svg>
+          <span>Center</span>
+        </button>
+
+        <div id="mapFallbackBanner" class="map-fallback-banner" style="display:none;">
+          <span>Map tiles unavailable offline. Live coordinates and Google Maps link remain active below.</span>
+        </div>
+      </div>
+
+      <!-- Live Info Panel / Bottom Sheet -->
+      <aside class="info-panel">
+        <!-- Status Banner -->
+        <div class="status-banner" id="statusBanner">
+          <div class="status-pill status-active" id="statusPill">
+            <span class="pulse-ring"></span>
+            <span id="statusText">EMERGENCY ACTIVE</span>
+          </div>
+          <span class="session-id-label" id="sessionIdLabel">Session #...</span>
+        </div>
+
+        <!-- Stale Location Alert (shown when GPS fix > 2m old) -->
+        <div class="alert-box alert-warning" id="staleAlert" style="display:none;">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
+            <line x1="12" y1="9" x2="12" y2="13"/>
+            <line x1="12" y1="17" x2="12.01" y2="17"/>
+          </svg>
+          <div class="alert-content">
+            <strong>Signal Stale</strong>
+            <span id="staleAlertText">Last GPS fix received over 2 minutes ago. The device may be indoors or in poor coverage.</span>
+          </div>
+        </div>
+
+        <!-- Session Ended / Safe Alert -->
+        <div class="alert-box alert-safe" id="endedAlert" style="display:none;">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+            <polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+          <div class="alert-content">
+            <strong>Emergency Resolved</strong>
+            <span id="endedAlertText">The user has ended this emergency session safely. Further location updates have ceased.</span>
+          </div>
+        </div>
+
+        <!-- Session Expired Alert -->
+        <div class="alert-box alert-expired" id="expiredAlert" style="display:none;">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+          </svg>
+          <div class="alert-content">
+            <strong>Tracking Link Expired</strong>
+            <span>This emergency tracking session has reached its security expiration window (2 hours).</span>
+          </div>
+        </div>
+
+        <!-- Metrics Cards Grid -->
+        <div class="metrics-grid">
+          <!-- Coordinates Card -->
+          <div class="metric-card">
+            <span class="metric-label">CURRENT COORDINATES</span>
+            <div class="coord-display">
+              <span class="coord-value" id="valCoords">--.-----, --.-----</span>
+              <button class="btn-copy" id="btnCopyCoords" title="Copy coordinates">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                  <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
+                </svg>
+              </button>
+            </div>
+            <span class="metric-sub" id="valAddress">Fetching location address...</span>
+          </div>
+
+          <!-- GPS Accuracy -->
+          <div class="metric-card">
+            <span class="metric-label">ESTIMATED ACCURACY</span>
+            <span class="metric-value" id="valAccuracy">±-- meters</span>
+            <span class="metric-sub" id="valBreadcrumbs">0 location points logged</span>
+          </div>
+
+          <!-- Last Fix Timestamp -->
+          <div class="metric-card">
+            <span class="metric-label">LAST GPS FIX</span>
+            <span class="metric-value" id="valFixTime">Waiting for fix...</span>
+            <span class="metric-sub" id="valFixRelative">--</span>
+          </div>
+
+          <!-- Backend Sync Time -->
+          <div class="metric-card">
+            <span class="metric-label">LAST SERVER SYNC</span>
+            <span class="metric-value" id="valSyncTime">Connecting...</span>
+            <span class="metric-sub" id="valSyncRelative">--</span>
+          </div>
+        </div>
+
+        <!-- Direct Actions -->
+        <div class="action-buttons">
+          <a id="btnGoogleMaps" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+            <span>Open in Google Maps</span>
+          </a>
+
+          <button id="btnShareLink" class="btn btn-secondary">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="18" cy="5" r="3"/>
+              <circle cx="6" cy="12" r="3"/>
+              <circle cx="18" cy="19" r="3"/>
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+              <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+            </svg>
+            <span>Share Tracking Link</span>
+          </button>
+        </div>
+
+        <!-- Footer Security Notice -->
+        <footer class="panel-footer">
+          <span>🔒 End-to-end encrypted session link • Minimal 24h retention • SAKHI Women's Safety System</span>
+        </footer>
+      </aside>
+    </main>
+  </div>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <!-- SAKHI Live Tracking App Script -->
+  <script src="/js/track.js"></script>
+</body>
+</html>

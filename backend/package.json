@@ -1,0 +1,23 @@
+{
+  "name": "sakhi-live-tracking-backend",
+  "version": "1.0.0",
+  "description": "SAKHI Live Emergency Location Tracking Backend and Web Service",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node tests/server.test.js"
+  },
+  "keywords": [
+    "sakhi",
+    "emergency",
+    "live-tracking",
+    "safety",
+    "gps",
+    "sse"
+  ],
+  "author": "SAKHI Safety Systems",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
